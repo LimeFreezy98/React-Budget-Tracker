@@ -5,7 +5,7 @@ export default function AddTransaction() {
     const [text, setText] = useState("");
     const [amount, setAmount] = useState("");
     const { addTransaction} = useContext(GlobalContext)
-    
+
     const onSubmit = (e) => {
         e.preventDefault();
         if (!text || !amount) return;
@@ -35,6 +35,7 @@ export default function AddTransaction() {
             <div className="mb-3">
               <input
                 type="number"
+                step="0.01"
                 className="form-control"
                 placeholder="Enter amount (negative = expense)"
                 value={amount}
