@@ -42,7 +42,7 @@ export default function AddTransaction() {
                 onChange={(e) => setAmount(e.target.value)}
               />
             </div>
-            <button className="btn btn-primary w-100">Add Transaction</button>
+            <button className="add-transaction-btn">Add Transaction</button>
           </form>
         </div>
       );
