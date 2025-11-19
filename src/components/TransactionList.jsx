@@ -7,16 +7,31 @@ export default function Transaction() {
     const [editing, setEditing] = useState(null)
     const [editName, setEditName] = useState("");
     const [editAmount, setEditAmount] = useState("");
+    const [error, setError] = useState("");
 
     const handleEdit = (transaction) => {
       setEditing(transaction.id);
       setEditName(transaction.text);
       setEditAmount(transaction.amount);
+      setError("");
     };
 
     const saveEdit = (id) => {
+        const cleanedText = editName.trim();
+        if (!cleanedText) {
+            setError("Please enter a valid description.");
+            return;
+          }
+           
+        //   validate amount
+          if (isNaN(editAmount) || editAmount === "") {
+            setError("Please enter a valid number for amount.");
+            return;
+          }
+
         editTransaction({ id, text: editName, amount: +editAmount });
         setEditing(null);
+        setError("")
     };
 
     return (
@@ -37,6 +52,7 @@ export default function Transaction() {
                          value={editName}
                          onChange={(e) => setEditName(e.target.value)}
                          className="form-control w-50 me-2"
+                         placeholder="Enter description..."
                         />
                         <input 
                           type="number"
@@ -44,6 +60,12 @@ export default function Transaction() {
                           onChange={(e) => setEditAmount(e.target.value)}
                           className="form-control w-25 me-2"
                           />
+                          {error && (
+                          <div className="alert alert-danger py-1 mb-2">
+                          {error}
+                          </div>
+                           )}
+                          
                           <button onClick={() => saveEdit(t.id)}
                             className="form-control w-25 me-2"> Save</button>
                         </>
