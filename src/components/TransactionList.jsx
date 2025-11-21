@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
+import { GlowContext } from "../context/GlowContext";
+
 export default function Transaction() {
     const { transactions, deleteTransaction, editTransaction } = useContext(GlobalContext);
+
+    const { glowEnabled} = useContext(GlowContext);
 
     const [editing, setEditing] = useState(null)
     const [editName, setEditName] = useState("");
@@ -76,10 +80,10 @@ export default function Transaction() {
                       )}
                       <div>
                         {editing !== t.id && (
-                            <button className="btn btn-warning btn-sm me-2"
+                            <button className={`btn btn-warning btn-sm me-2 ${glowEnabled ? "glow-btn glow-edit" : ""}`}
                             onClick={() => handleEdit(t)}> Edit </button>
                         )}
-                        <button className="btn btn-danger btn-sm"
+                        <button className={`btn btn-danger btn-sm ${glowEnabled ? "glow-btn glow-delete" : ""}`}
                         onClick={() => deleteTransaction(t.id)}>Delete</button>
                      </div>
                   </li>
