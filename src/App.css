@@ -61,6 +61,9 @@ body {
   transition: all 0.3s ease;
 }
 
+.gradient-toggle:hover {
+  opacity: 0.85;
+}
 
 .gradient-btn {
   transition: all 0.3s ease;
