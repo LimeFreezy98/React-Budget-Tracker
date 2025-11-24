@@ -70,8 +70,17 @@ export default function Transaction() {
                           </div>
                            )}
                           
-                          <button onClick={() => saveEdit(t.id)}
+                          <button onClick={() =>  saveEdit(t.id)}
                             className="form-control w-25 me-2"> Save</button>
+
+                            <button onClick={() => {
+                            setEditing(null);
+                            setEditName("");
+                            setEditAmount("");
+                            setError("")
+                            }}
+                            className="form-control w-25 me-2"
+                         > Cancel </button>
                         </>
                       ) : (
                         <>
